@@ -1,26 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import registerform from './component/registerform';
+import registerlist from './component/registerlist';
+import Header from './component/header';
+import Sidebar from './component/sidebar';
+import Footer from './component/footer';
+import productform from './component/productform';
+import productlist from './component/productlist';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import '../src/style/App.css';
+
+class MainContainer extends React.Component {
+  render() {
+    return (
+      <div>
+        <Header/>
+        <Sidebar/>
+        <div>
+          <Route path="/registerlist/edit/:id" component={registerform} />
+          <Route path="/productlist/edit/:id" component={productform} />
+          <Route path="/registerform" component={registerform} />
+          <Route path="/registerlist" component={registerlist} />
+          <Route path="/productform" component={productform} />
+          <Route path="/productlist" component={productlist} />
+			  </div>
+        <div>
+          <Footer/>
+        </div>
+			</div>
+    );
+  }
 }
-
+class App extends React.Component{
+  render(){
+    return (
+      <Router>
+        <MainContainer />
+      </Router>
+    )
+  }
+}
 export default App;
+
+
+
+
+
+
+
+ 
